@@ -10,7 +10,7 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=312
 )
 
-K = 7
+K = 10
 
 knn_clf = KNN(k=K)
 knn_clf.fit(X_train=X_train, y_train=y_train)
