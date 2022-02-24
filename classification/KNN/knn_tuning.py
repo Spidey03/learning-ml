@@ -19,5 +19,5 @@ def KNN_tuning(K: List[int], X_train, y_train):
         accuracy.append(acc)
 
     best_accuracy_idx = accuracy.index(max(accuracy))
-    print(accuracy[best_accuracy_idx], K[best_accuracy_idx])
+    print(f"Best Accuracy: {accuracy[best_accuracy_idx]} Best K: {K[best_accuracy_idx]}")
     return K[best_accuracy_idx]
