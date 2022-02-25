@@ -1,9 +1,9 @@
 from typing import List
-import numpy as np
 
+import numpy as np
 from sklearn.model_selection import train_test_split
 
-from knn_scratch import KNN
+from classification.KNN.knn_scratch import KNN
 
 
 def KNN_tuning(K: List[int], X_train, y_train):
@@ -15,7 +15,7 @@ def KNN_tuning(K: List[int], X_train, y_train):
         knn_clf = KNN(k=k)
         knn_clf.fit(X_train=X_train, y_train=y_train)
         predictions = knn_clf.predict(X_valid)
-        acc = np.sum(predictions == y_valid)/len(y_valid)
+        acc = np.sum(predictions == y_valid) / len(y_valid)
         accuracy.append(acc)
 
     best_accuracy_idx = accuracy.index(max(accuracy))

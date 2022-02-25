@@ -2,11 +2,13 @@ import os
 
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 
-from knn_scratch import KNN
-from knn_tuning import KNN_tuning
+from classification.KNN.knn_scratch import KNN
+from classification.KNN.knn_tuning import KNN_tuning
 
 
 class DataVisualization:
@@ -20,38 +22,28 @@ class DataVisualization:
         self.correlation_matrix()
 
     def petal_length_vs_petal_width(self):
-        import matplotlib.pyplot as plt
-        import seaborn as sns
         sns.scatterplot(x="petal length (cm)", y="petal width (cm)", hue='species', data=self.df)
         plt.xlabel("Petal Length")
         plt.ylabel("Petal Width")
-        file_name = os.path.join('iris_flower', 'plots', 'petal_length_vs_petal_width.jpg')
-        plt.savefig(file_name)
+        plt.savefig(os.path.join('iris_flower', 'plots', 'petal_length_vs_petal_width.jpg'))
 
     def sepal_length_vs_sepal_width(self):
-        import matplotlib.pyplot as plt
-        import seaborn as sns
         sns.scatterplot(x="sepal length (cm)", y="sepal width (cm)", hue='species', data=self.df)
         plt.xlabel("Sepal Length")
         plt.ylabel("Sepal Width")
-        file_name = os.path.join('iris_flower', 'plots', 'sepal_length_vs_sepal_width.jpg')
-        plt.savefig(file_name)
+        plt.savefig(os.path.join('iris_flower', 'plots', 'sepal_length_vs_sepal_width.jpg'))
 
-    def pair_wise_rel(self):
-        import matplotlib.pyplot as plt
-        import seaborn as sns
+    @staticmethod
+    def pair_wise_rel():
         sns.pairplot(df, hue='species')
-        file_name = os.path.join('iris_flower', 'plots', 'pair_plot.jpg')
-        plt.savefig(file_name)
+        plt.savefig(os.path.join('iris_flower', 'plots', 'pair_plot.jpg'))
 
-    def correlation_matrix(self):
-        import matplotlib.pyplot as plt
-        import seaborn as sns
+    @staticmethod
+    def correlation_matrix():
         corr_df = df.replace({'setosa': 0, 'versicolor': 1, 'virginica': 2})
-        fig = plt.figure(dpi=100, frameon=False)
+        plt.figure(dpi=100, frameon=False)
         sns.heatmap(corr_df.corr(), annot=True)
-        file_name = os.path.join('iris_flower', 'plots', 'correlation_matrix.jpg')
-        plt.savefig(file_name)
+        plt.savefig(os.path.join('iris_flower', 'plots', 'correlation_matrix.jpg'))
 
 
 if __name__ == "__main__":
