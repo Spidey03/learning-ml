@@ -63,7 +63,7 @@ if __name__ == "__main__":
 
     K = [3, 5, 7, 10, 30, 100]
 
-    best_k = KNN_tuning(K=K, X_train=X_train, y_train=y_train)
+    best_k = KNN_tuning(K=K, X_train=X_train, y_train=y_train, distance_metrix="minkowski", p=2)
     knn_clf = KNN(k=best_k)
     knn_clf.fit(X_train=X_train, y_train=y_train)
     predictions = knn_clf.predict(X_test)
