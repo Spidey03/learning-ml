@@ -1,16 +1,15 @@
 from collections import Counter
+
 import numpy as np
 
-
-def euclidean_distance(test_input, train_inputs):
-    abs_diff = np.abs(train_inputs - test_input)
-    return np.sqrt(np.sum(np.power(abs_diff, 2), axis=1))
+from classification.KNN.distance_metrics import DistanceMetrics
 
 
 class KNN:
-    def __init__(self, k: int = 3, distance_measurement: str = "euclidean"):
+    def __init__(self, k: int = 3, distance_measurement: str = "euclidean", **kwargs):
         self.k = k
         self.distance_measurement = distance_measurement
+        self.p = kwargs.get('p', 1)
 
     def fit(self, X_train, y_train):
         self.X_train = X_train
@@ -18,9 +17,18 @@ class KNN:
 
     def calculate_distance(self, test_input):
         distances = []
-        if self.distance_measurement == "euclidean":
-            distances = euclidean_distance(
+        distance_mtx = DistanceMetrics()
+        if self.distance_measurement == "manhattan":
+            distances = distance_mtx.manhattan_distance_mtx(
                 train_inputs=self.X_train, test_input=test_input
+            )
+        elif self.distance_measurement == "euclidean":
+            distances = distance_mtx.euclidean_distance_mtx(
+                train_inputs=self.X_train, test_input=test_input
+            )
+        else:
+            distances = distance_mtx.minkowski_distance_mtx(
+                train_inputs=self.X_train, test_input=test_input, p=self.p
             )
         return distances
 
