@@ -40,7 +40,7 @@ class KNN:
         distances = self.calculate_distance(test_input=test_input)
         indices = np.argsort(distances)
 
-        # TODO: handle distance tie
+        # break distance tie using considering kth distance points
         k_indices = indices[: self.k]
         k_nearest_neighbors = self.y_train[k_indices]
 
