@@ -2,7 +2,7 @@ from collections import Counter
 
 import numpy as np
 
-from classification.KNN.distance_metrics import DistanceMetrics
+from classification.KNN.algorithm.distance_metrics import DistanceMetrics
 
 
 class KNN:
