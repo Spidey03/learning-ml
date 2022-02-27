@@ -3,7 +3,7 @@ from typing import List
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-from classification.KNN.knn_scratch import KNN
+from classification.KNN.algorithm.knn_scratch import KNN
 
 
 def KNN_tuning(K: List[int], X_train, y_train, distance_metrix, **kwargs):
