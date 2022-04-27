@@ -7,8 +7,8 @@ import seaborn as sns
 from sklearn import datasets
 from sklearn.model_selection import train_test_split
 
-from classification.KNN.knn_scratch import KNN
-from classification.KNN.knn_tuning import KNN_tuning
+from classification.KNN.algorithm.knn_scratch import KNN
+from classification.KNN.algorithm.knn_tuning import KNN_tuning
 
 
 class DataVisualization:
@@ -25,25 +25,25 @@ class DataVisualization:
         sns.scatterplot(x="petal length (cm)", y="petal width (cm)", hue='species', data=self.df)
         plt.xlabel("Petal Length")
         plt.ylabel("Petal Width")
-        plt.savefig(os.path.join('iris_flower', 'plots', 'petal_length_vs_petal_width.jpg'))
+        plt.savefig(os.path.join('plots', 'petal_length_vs_petal_width.jpg'))
 
     def sepal_length_vs_sepal_width(self):
         sns.scatterplot(x="sepal length (cm)", y="sepal width (cm)", hue='species', data=self.df)
         plt.xlabel("Sepal Length")
         plt.ylabel("Sepal Width")
-        plt.savefig(os.path.join('iris_flower', 'plots', 'sepal_length_vs_sepal_width.jpg'))
+        plt.savefig(os.path.join('plots', 'sepal_length_vs_sepal_width.jpg'))
 
     @staticmethod
     def pair_wise_rel():
         sns.pairplot(df, hue='species')
-        plt.savefig(os.path.join('iris_flower', 'plots', 'pair_plot.jpg'))
+        plt.savefig(os.path.join('plots', 'pair_plot.jpg'))
 
     @staticmethod
     def correlation_matrix():
         corr_df = df.replace({'setosa': 0, 'versicolor': 1, 'virginica': 2})
         plt.figure(dpi=100, frameon=False)
         sns.heatmap(corr_df.corr(), annot=True)
-        plt.savefig(os.path.join('iris_flower', 'plots', 'correlation_matrix.jpg'))
+        plt.savefig(os.path.join('plots', 'correlation_matrix.jpg'))
 
 
 if __name__ == "__main__":
